@@ -1,0 +1,44 @@
+.goodMovieTitle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h2 {
+    font-size: 20px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 1px;
+    background-color: #ccc;
+    left: 20px;
+  }
+  ul {
+    margin: 20px 0;
+    width: 80%;
+    list-style: none;
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-around;
+
+    li {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      background-color: #003333;
+
+      div {
+        margin-left: 15px;
+      }
+
+      &:hover {
+        background-color: #111;
+      }
+    }
+  }
+}
