@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../config";
 import Loading from "@/components/loading/Loading";
-import MovieLists from "@/components/movieLists/MovieLists";
+import "./page.scss";
+import GoodMovie from "@/components/goodMovie/GoodMovie";
+import HomeList from "@/components/homeList/HomeList";
 
 export default function Home() {
   const [movies, setMovies] = useState({});
@@ -27,8 +29,15 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {isEmptyObject(movies) ? <Loading /> : <MovieLists movies={movies} />}
+    <div className="home grid wide">
+      {isEmptyObject(movies) ? (
+        <Loading />
+      ) : (
+        <div className="row no-gutters">
+          <HomeList movies={movies} />
+          <GoodMovie />
+        </div>
+      )}
     </div>
   );
 }

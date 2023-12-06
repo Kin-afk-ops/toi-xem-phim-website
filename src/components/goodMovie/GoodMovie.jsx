@@ -7,8 +7,8 @@ import "./responsive.scss";
 
 const GoodMovie = () => {
   return (
-    <div className="goodMovieTitle">
-      <h2>Phim nổi bật</h2>
+    <div className="goodMovie c-3">
+      <h2 className="mainTitle">PHIM HOT</h2>
       <ul>
         <li>
           <Image

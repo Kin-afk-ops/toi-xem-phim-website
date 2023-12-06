@@ -1,5 +1,6 @@
 :root {
   --primary-color: #00cccc;
+  --background-color: #151414;
 }
 
 * {
@@ -28,4 +29,13 @@ html {
 
 .errorWrap {
   text-align: center;
+}
+
+.mainTitle {
+  color: white;
+  font-size: 20px;
+}
+
+.main-container {
+  margin: 30px 0;
 }

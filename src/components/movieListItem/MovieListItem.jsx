@@ -21,7 +21,7 @@ const MovieListItem = ({ movie }) => {
   return (
     <Link
       href={`/xem-phim/${slug}/1`}
-      className="col l-2-4 link movieListItem"
+      className="link movieListItem"
       onClick={handleClick}
     >
       <div className="movieListItemPoster">
@@ -32,7 +32,7 @@ const MovieListItem = ({ movie }) => {
           // threshold="100"
           // placeholderSrc={tam}
           width={160}
-          height={220}
+          height={210}
           className="movieListItemImg"
         />
 
@@ -42,6 +42,7 @@ const MovieListItem = ({ movie }) => {
 
       <div className="movieListItemName">
         <span>{movie?.name}</span>
+        <span className="movieOriginName">{movie?.origin_name}</span>
       </div>
     </Link>
   );
