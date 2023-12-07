@@ -1,5 +1,3 @@
-"use client";
-
 import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
@@ -27,8 +25,8 @@ const Pagination = ({ totalMovie, moviesPerPage, type, path, currentPage }) => {
         <ReactPaginate
           onPageChange={handlePageClick}
           className="paginationPage"
-          previousLabel="<<"
-          nextLabel=">>"
+          previousLabel="<"
+          nextLabel=">"
           breakLabel={"..."}
           pageCount={pages.length}
           marginPagesDisplayed={2}
@@ -37,9 +35,6 @@ const Pagination = ({ totalMovie, moviesPerPage, type, path, currentPage }) => {
           nextClassName="next"
           activeClassName="active"
         />
-      </div>
-      <div className="currentPage">
-        Trang hiện tại: {currentPage}/{pages.length}
       </div>
     </div>
   );

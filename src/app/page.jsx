@@ -6,22 +6,35 @@ import Loading from "@/components/loading/Loading";
 import "./page.scss";
 import GoodMovie from "@/components/goodMovie/GoodMovie";
 import HomeList from "@/components/homeList/HomeList";
+import Posts from "@/components/posts/Posts";
 
 export default function Home() {
   const [movies, setMovies] = useState({});
+  const [seriesMovies, setSeriesMovies] = useState({});
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const res = await axiosInstance.get("/movie/home");
+    const fetchNewMovies = async () => {
+      const res = await axiosInstance.get("/home");
 
       setMovies({
         data: res.data,
         name: "Phim mới cập nhật",
-        path: "all/all",
+        path: "phim-moi-cap-nhat/phim-moi",
       });
     };
 
-    fetchMovies();
+    const fetchSeriesMovies = async () => {
+      const res = await axiosInstance.get(`/home?qHome=${"series"}`);
+
+      setSeriesMovies({
+        data: res.data,
+        name: "Phim bộ mới cập nhật",
+        path: "phim-moi-cap-nhat/series",
+      });
+    };
+
+    fetchNewMovies();
+    fetchSeriesMovies();
   }, []);
 
   const isEmptyObject = (obj) => {
@@ -34,7 +47,11 @@ export default function Home() {
         <Loading />
       ) : (
         <div className="row no-gutters">
-          <HomeList movies={movies} />
+          <div className="c-9">
+            <HomeList movies={movies} />
+            <HomeList movies={seriesMovies} />
+            <Posts />
+          </div>
           <GoodMovie />
         </div>
       )}

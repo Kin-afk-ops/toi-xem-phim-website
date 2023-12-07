@@ -21,7 +21,7 @@ const MovieLists = ({ movies }) => {
   return (
     <div className="movieList grid main-container">
       <div className="movieListTitle">
-        <h3>{movies?.name}</h3>
+        <h2 className="mainTitle">{movies?.name}</h2>
         <Link
           href={{
             pathname: `danh-sach/${movies?.path}`,

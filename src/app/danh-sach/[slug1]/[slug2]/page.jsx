@@ -13,7 +13,7 @@ import axiosInstance from "../../../../config";
 const Lists = ({ params }) => {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState("");
-  const moviesPerPage = 25;
+  const moviesPerPage = 30;
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
 
@@ -29,8 +29,8 @@ const Lists = ({ params }) => {
   const path = params.slug2;
 
   useEffect(() => {
-    const fetchMovie = async () => {
-      const res = await axiosInstance.get(`/movie/${type}?q=${path}`);
+    const fetchNewMovie = async () => {
+      const res = await axiosInstance.get(`/movie?qNew=${true}`);
 
       setMovies(res.data);
     };
@@ -45,10 +45,10 @@ const Lists = ({ params }) => {
       setMovies(res.data);
     };
 
-    const fetchAllMovie = async () => {
-      const res = await axiosInstance.get("/movie");
-      setMovies(res.data);
-    };
+    // const fetchAllMovie = async () => {
+    //   const res = await axiosInstance.get("/movie");
+    //   setMovies(res.data);
+    // };
 
     const fetchSearchMovie = async () => {
       const res = await axiosInstance.get(`/search?search=${path}`);
@@ -56,9 +56,9 @@ const Lists = ({ params }) => {
       setMovies(res.data);
     };
 
-    if (type === "all") {
-      fetchAllMovie();
-      setTitle("Tất cả phim");
+    if (type === "phim-moi-cap-nhat") {
+      fetchNewMovie();
+      setTitle("Phim mới cập nhật");
     } else if (type === "search") {
       fetchSearchMovie();
       setTitle(`Kết quả tìm kiếm cho:  "${path.toUpperCase()}"`);
@@ -84,7 +84,7 @@ const Lists = ({ params }) => {
 
   return (
     <div className="lists">
-      <h1>{title}</h1>
+      <h1 className="mainTitle">{title}</h1>
 
       {currentMovies.length === 0 ? (
         <Loading movies={movies} />
