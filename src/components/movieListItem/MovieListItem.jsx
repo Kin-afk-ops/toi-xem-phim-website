@@ -8,7 +8,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 // import tam from "../../assets/images/tam.jpg";
 import Image from "next/image";
 
-const MovieListItem = ({ movie }) => {
+const MovieListItem = ({ movie, listMode }) => {
   const slug = movie?.slug;
 
   const handleClick = () => {
@@ -21,7 +21,9 @@ const MovieListItem = ({ movie }) => {
   return (
     <Link
       href={`/xem-phim/${slug}/1`}
-      className="link movieListItem"
+      className={
+        listMode ? "link movieListItem col l-2-4" : "link movieListItem"
+      }
       onClick={handleClick}
     >
       <div className="movieListItemPoster">

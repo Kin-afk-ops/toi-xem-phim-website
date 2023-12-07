@@ -89,9 +89,9 @@ const Lists = ({ params }) => {
       {currentMovies.length === 0 ? (
         <Loading movies={movies} />
       ) : (
-        <div className="movieListItems">
+        <div className="movieListItems row">
           {currentMovies.map((movie, index) => (
-            <MovieListItem movie={movie} key={index} />
+            <MovieListItem movie={movie} key={index} listMode={true} />
           ))}
         </div>
       )}

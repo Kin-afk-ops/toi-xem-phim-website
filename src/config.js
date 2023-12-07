@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://linh-video-back-end.vercel.app/api",
+  baseURL: "http://localhost:8000/api",
 });
 
 export default axiosInstance;
