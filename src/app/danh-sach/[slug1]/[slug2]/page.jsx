@@ -14,7 +14,6 @@ const Lists = ({ params }) => {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState("");
   const [totalPage, setTotalPage] = useState(0);
-  const moviesPerPage = 30;
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
 

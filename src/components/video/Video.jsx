@@ -3,9 +3,10 @@
 import { useState } from "react";
 import "./video.scss";
 import "./responsive.scss";
+import Link from "next/link";
 
 const Video = (props) => {
-  const { movie, name, episode_current, ep } = props;
+  const { movie, ep } = props;
   const infoMovie = movie.episodes;
   let dataArray = [];
   const [serverMovie, setServerMovie] = useState(infoMovie[0].server_name);
@@ -50,7 +51,12 @@ const Video = (props) => {
 
   return (
     <div className="video">
-      <h3>{fileName}</h3>
+      {ep ? (
+        <h3>{`${movie.movie.name} tập ${ep}`}</h3>
+      ) : (
+        <h3>{`${movie.movie.name} `}</h3>
+      )}
+
       <div className="container">
         <iframe
           className="responsive-iframe"
@@ -73,20 +79,23 @@ const Video = (props) => {
           </button>
         ))}
       </div>
-      {episode_current !== "Full" && (
+      {ep !== "" && (
         <>
           <span>Hãy chọn tập phim để xem phim nhé!</span>
           <div className="singleMovieEp">
-            {dataArray.length !== 0 &&
-              dataArray.map((d, index) => (
-                <button
-                  className={d.slug === ep ? "link ep epActive" : "link ep"}
-                  key={index}
-                  onClick={() => handleClick(d)}
-                >
-                  {d.name}
-                </button>
-              ))}
+            {dataArray.map((d, index) => (
+              <Link
+                key={index}
+                href={`/xem-phim/${movie?.movie.slug}?ep=${d.name}`}
+                className={
+                  d.name === ep
+                    ? "link singleMovieEpBtn epActive"
+                    : "link singleMovieEpBtn"
+                }
+              >
+                {d.name}
+              </Link>
+            ))}
           </div>
         </>
       )}

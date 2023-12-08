@@ -6,7 +6,6 @@ const InfoLayout = async ({ params }) => {
   const slugMovie = params.slug.split(".")[0];
   const res = await axiosInstance.get("https://ophim1.com/phim/" + slugMovie);
   const movie = await res.data;
-  console.log(movie);
 
   return (
     <div>

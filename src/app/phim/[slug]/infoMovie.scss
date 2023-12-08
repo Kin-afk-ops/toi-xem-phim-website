@@ -1,9 +1,4 @@
 .infoMovie {
-  width: 1200px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-
   .infoMovieCard {
     margin-top: 30px;
     background-color: var(--background-color);
@@ -13,21 +8,60 @@
       display: flex;
       align-items: start;
       padding-top: 20px;
-      img {
+      justify-content: space-between;
+
+      .leftWrap {
         width: 205px;
-        height: 285px;
-        object-fit: cover;
+        position: relative;
+
+        &:hover {
+          img {
+            opacity: 0.5;
+          }
+          .infoMovieIcon {
+            display: block;
+          }
+        }
+        img {
+          width: 100%;
+          height: 285px;
+          object-fit: cover;
+          cursor: pointer;
+        }
+
+        .infoMovieWatch {
+          background-color: var(--primary-color);
+          cursor: pointer;
+          border: none;
+          padding: 10px;
+          margin-top: 10px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 16px;
+        }
+
+        .infoMovieIcon {
+          position: absolute;
+          color: white;
+          top: 43%;
+          transform: translateY(-50%);
+          left: 40%;
+          cursor: pointer;
+          font-size: 50px;
+          display: none;
+        }
       }
 
       .infoMovieContent {
         display: flex;
         flex-direction: column;
-        height: 100%;
-        widows: 95px;
+        padding-left: 15px;
         .infoMovieName {
           font-size: 30px;
           color: #00ccff;
-          font-weight: 500;
         }
         .infoMovieDesc {
           width: 90%;
@@ -48,6 +82,7 @@
         }
 
         .infoMovieEp {
+          margin-top: 20px;
           display: flex;
           flex-direction: column;
           p {
@@ -56,7 +91,21 @@
           .infoMovieBtn {
             display: flex;
             flex-wrap: wrap;
-            button {
+
+            .infoMovieServerBtn {
+              padding: 10px;
+              background-color: var(--background-color);
+              color: white;
+              border: 1px solid black;
+              cursor: pointer;
+              margin-right: 20px;
+            }
+
+            .active {
+              border: 1px solid var(--primary-color);
+            }
+
+            .infoMovieEpBtn {
               margin-top: 20px;
               cursor: pointer;
               margin-right: 10px;
@@ -74,24 +123,27 @@
         }
       }
 
-      div {
-        padding: 5px;
-        font-weight: 500;
+      .infoMovieInfo {
+        margin: 50px 0;
 
-        .infoMovieInfoText {
-          padding: 0;
+        div {
+          padding: 5px;
+          font-weight: 500;
 
-          span {
-            &:first-child {
-              color: #c7c7c7;
-              width: 230px;
-              display: inline-block;
-            }
+          .infoMovieInfoText {
+            border-bottom: 1px solid #333;
+            span {
+              &:first-child {
+                color: #c7c7c7;
+                width: 230px;
+                display: inline-block;
+              }
 
-            &:last-child {
-              display: inline-block;
-              width: calc(100% - 230px);
-              color: #3399ff;
+              &:last-child {
+                display: inline-block;
+                width: calc(100% - 230px);
+                color: #3399ff;
+              }
             }
           }
         }
