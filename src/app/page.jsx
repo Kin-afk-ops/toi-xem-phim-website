@@ -1,41 +1,36 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import axiosInstance from "../config";
-import Loading from "@/components/loading/Loading";
 import "./page.scss";
 import GoodMovie from "@/components/goodMovie/GoodMovie";
 import HomeList from "@/components/homeList/HomeList";
 import Posts from "@/components/posts/Posts";
 
-export default function Home() {
-  const [movies, setMovies] = useState({});
-  const [seriesMovies, setSeriesMovies] = useState({});
+export default async function Home() {
+  const res = await axiosInstance.get("/home");
+  const resSeries = await axiosInstance.get(`/home?qHome=${"series"}`);
+  const resMovies = await axiosInstance.get(`/home?qHome=${"movie"}`);
+  const resHot = await axiosInstance.get(`/home?qHot=${true}`);
 
-  useEffect(() => {
-    const fetchNewMovies = async () => {
-      const res = await axiosInstance.get("/home");
+  const hotMovies = {
+    data: resHot.data,
+    name: "Phim hot mới cập nhật",
+    path: "phim-hot-moi-cap-nhat/phim-hot",
+  };
 
-      setMovies({
-        data: res.data,
-        name: "Phim mới cập nhật",
-        path: "phim-moi-cap-nhat/phim-moi",
-      });
-    };
-
-    const fetchSeriesMovies = async () => {
-      const res = await axiosInstance.get(`/home?qHome=${"series"}`);
-
-      setSeriesMovies({
-        data: res.data,
-        name: "Phim bộ mới cập nhật",
-        path: "phim-moi-cap-nhat/series",
-      });
-    };
-
-    fetchNewMovies();
-    fetchSeriesMovies();
-  }, []);
+  const movies = {
+    data: res.data,
+    name: "Phim mới cập nhật",
+    path: "phim-moi-cap-nhat/phim-moi",
+  };
+  const seriesMovies = {
+    data: resSeries.data,
+    name: "Phim bộ mới cập nhật",
+    path: "phim-bo-moi-cap-nhat/series",
+  };
+  const movieMovies = {
+    data: resMovies.data,
+    name: "Phim lẻ mới cập nhật",
+    path: "phim-le-moi-cap-nhat/movie",
+  };
 
   const isEmptyObject = (obj) => {
     return JSON.stringify(obj) === "{}";
@@ -43,18 +38,17 @@ export default function Home() {
 
   return (
     <div className="home grid wide">
-      {isEmptyObject(movies) ? (
-        <Loading />
-      ) : (
-        <div className="row no-gutters">
-          <div className="c-9">
-            <HomeList movies={movies} />
-            <HomeList movies={seriesMovies} />
-            <Posts />
-          </div>
-          <GoodMovie />
+      <div className="row no-gutters">
+        <div className="c-9">
+          {isEmptyObject(hotMovies) && <HomeList movies={hotMovies} />}
+
+          <HomeList movies={movies} />
+          <HomeList movies={seriesMovies} />
+          <HomeList movies={movieMovies} />
+          <Posts />
         </div>
-      )}
+        <GoodMovie />
+      </div>
     </div>
   );
 }

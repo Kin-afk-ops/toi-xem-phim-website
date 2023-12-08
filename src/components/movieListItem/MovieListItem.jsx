@@ -20,7 +20,7 @@ const MovieListItem = ({ movie, listMode }) => {
 
   return (
     <Link
-      href={`/xem-phim/${slug}/1`}
+      href={`/phim/${slug}.html`}
       className={
         listMode ? "link movieListItem col l-2-4" : "link movieListItem"
       }
@@ -33,8 +33,10 @@ const MovieListItem = ({ movie, listMode }) => {
           // effect="blur"
           // threshold="100"
           // placeholderSrc={tam}
-          width={160}
-          height={210}
+          fill
+          style={{
+            objectFit: "cover",
+          }}
           className="movieListItemImg"
         />
 

@@ -1,0 +1,107 @@
+.infoMovie {
+  width: 1200px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .infoMovieCard {
+    margin-top: 30px;
+    background-color: var(--background-color);
+
+    .infoMovieTop {
+      padding-left: 30px;
+      display: flex;
+      align-items: start;
+      padding-top: 20px;
+      img {
+        width: 205px;
+        height: 285px;
+        object-fit: cover;
+      }
+
+      .infoMovieContent {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        widows: 95px;
+        .infoMovieName {
+          font-size: 30px;
+          color: #00ccff;
+          font-weight: 500;
+        }
+        .infoMovieDesc {
+          width: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-bottom: 1px solid #333;
+
+          p {
+            display: block;
+            color: rgba(255, 255, 255, 0.835);
+            font-weight: 500;
+            font-size: 15px;
+            text-align: justify;
+
+            letter-spacing: 0.5px;
+          }
+        }
+
+        .infoMovieEp {
+          display: flex;
+          flex-direction: column;
+          p {
+            color: white;
+          }
+          .infoMovieBtn {
+            display: flex;
+            flex-wrap: wrap;
+            button {
+              margin-top: 20px;
+              cursor: pointer;
+              margin-right: 10px;
+              width: 30px;
+              height: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 5px;
+              color: white;
+              background-color: var(--background-color);
+              border: 1px solid black;
+            }
+          }
+        }
+      }
+
+      div {
+        padding: 5px;
+        font-weight: 500;
+
+        .infoMovieInfoText {
+          padding: 0;
+
+          span {
+            &:first-child {
+              color: #c7c7c7;
+              width: 230px;
+              display: inline-block;
+            }
+
+            &:last-child {
+              display: inline-block;
+              width: calc(100% - 230px);
+              color: #3399ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.infoMovieVideo {
+  background-color: #003333;
+  border-radius: 30px;
+  margin-top: 50px;
+}

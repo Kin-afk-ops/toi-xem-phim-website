@@ -2,12 +2,7 @@ import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ totalMovie, moviesPerPage, type, path, currentPage }) => {
-  let pages = [];
-
-  for (var i = 1; i <= Math.ceil(totalMovie / moviesPerPage); i++) {
-    pages.push(i);
-  }
+const Pagination = ({ totalPage, type, path, currentPage }) => {
   const router = useRouter();
 
   const handlePageClick = (data) => {
@@ -16,7 +11,7 @@ const Pagination = ({ totalMovie, moviesPerPage, type, path, currentPage }) => {
       top: 0,
       // behavior: "smooth",
     });
-    router.replace(`/danh-sach/${type}/${path}?page=${data.selected + 1}`);
+    router.push(`/danh-sach/${type}/${path}?page=${data.selected + 1}`);
   };
 
   return (
@@ -28,7 +23,7 @@ const Pagination = ({ totalMovie, moviesPerPage, type, path, currentPage }) => {
           previousLabel="<"
           nextLabel=">"
           breakLabel={"..."}
-          pageCount={pages.length}
+          pageCount={totalPage}
           marginPagesDisplayed={2}
           forcePage={parseInt(currentPage) - 1}
           previousClassName="prev"

@@ -13,6 +13,7 @@ import axiosInstance from "../../../../config";
 const Lists = ({ params }) => {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState("");
+  const [totalPage, setTotalPage] = useState(0);
   const moviesPerPage = 30;
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
@@ -32,73 +33,46 @@ const Lists = ({ params }) => {
     const fetchNewMovie = async () => {
       const res = await axiosInstance.get(`/movie?qNew=${true}`);
 
-      setMovies(res.data);
+      setMovies(res.data.movies);
     };
 
-    const fetchAnimeMovie = async () => {
-      const res = await axiosInstance.get(`/movie/${type}?q=anime&t=movie`);
-      setMovies(res.data);
+    const fetchSeriesMovie = async () => {
+      const res = await axiosInstance.get(`/movie?qCategory=${type}&qPage=1`);
+
+      setMovies(res.data.movies);
+      setTotalPage(res.data.totalPage);
     };
 
-    const fetchAnimeSeries = async () => {
-      const res = await axiosInstance.get(`/movie/${type}?q=anime&t=series`);
-      setMovies(res.data);
-    };
-
-    // const fetchAllMovie = async () => {
-    //   const res = await axiosInstance.get("/movie");
-    //   setMovies(res.data);
-    // };
-
-    const fetchSearchMovie = async () => {
-      const res = await axiosInstance.get(`/search?search=${path}`);
-
-      setMovies(res.data);
-    };
-
-    if (type === "phim-moi-cap-nhat") {
-      fetchNewMovie();
-      setTitle("Phim mới cập nhật");
-    } else if (type === "search") {
-      fetchSearchMovie();
-      setTitle(`Kết quả tìm kiếm cho:  "${path.toUpperCase()}"`);
-    } else {
-      fetchMovie();
-      setTitle(`Danh sách cho phim: "${path.toUpperCase()}"`);
-    }
-
-    if (path === "animeMovie") {
-      fetchAnimeMovie();
-      setTitle("Danh sách Anime chiếu rạp");
-    }
-
-    if (path === "animeSeries") {
-      fetchAnimeSeries();
-      setTitle("Danh sách series Anime");
+    switch (type) {
+      case "phim-moi-cap-nhat":
+        fetchNewMovie();
+        setTitle("Phim mới cập nhật");
+        break;
+      case "phim-bo-moi-cap-nhat":
+        fetchSeriesMovie();
+        setTitle("Phim bộ mới cập nhật");
+      default:
+        console.log("haha");
+        break;
     }
   }, [path, type]);
-
-  const lastMovieIndex = currentPage * moviesPerPage;
-  const firstMovieIndex = lastMovieIndex - moviesPerPage;
-  const currentMovies = movies.slice(firstMovieIndex, lastMovieIndex);
 
   return (
     <div className="lists">
       <h1 className="mainTitle">{title}</h1>
 
-      {currentMovies.length === 0 ? (
+      {movies.length === 0 ? (
         <Loading movies={movies} />
       ) : (
         <div className="movieListItems row">
-          {currentMovies.map((movie, index) => (
+          {movies.map((movie, index) => (
             <MovieListItem movie={movie} key={index} listMode={true} />
           ))}
         </div>
       )}
 
       <Pagination
-        totalMovie={movies.length}
-        moviesPerPage={moviesPerPage}
+        totalPage={totalPage}
         type={type}
         path={path}
         currentPage={currentPage}

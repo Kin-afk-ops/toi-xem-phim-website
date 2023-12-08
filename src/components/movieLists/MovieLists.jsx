@@ -50,8 +50,6 @@ const MovieLists = ({ movies }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <hr />
     </div>
   );
 };
