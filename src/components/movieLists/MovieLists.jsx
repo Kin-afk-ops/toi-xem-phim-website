@@ -4,6 +4,7 @@ import Link from "next/link";
 import MovieListItem from "../movieListItem/MovieListItem";
 import "./movieLists.scss";
 import "./responsive.scss";
+import slugify from "slugify";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,7 +25,10 @@ const MovieLists = ({ movies }) => {
         <h2 className="mainTitle">{movies?.name}</h2>
         <Link
           href={{
-            pathname: `danh-sach/${movies?.path}`,
+            pathname: `danh-sach/${slugify(movies?.name, {
+              lower: true,
+              locale: "vi",
+            })}.html`,
             query: {
               page: "1",
             },

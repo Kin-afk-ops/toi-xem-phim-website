@@ -1,14 +1,14 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import MovieListItem from "../../../../components/movieListItem/MovieListItem";
+
+import MovieListItem from "../../../components/movieListItem/MovieListItem";
 import "./list.scss";
 import "./responsive.scss";
-import { useEffect, useState } from "react";
-import Pagination from "../../../../components/pagination/Pagination";
-import Loading from "../../../../components/loading/Loading";
+import Pagination from "../../../components/pagination/Pagination";
+import Loading from "../../../components/loading/Loading";
 
-import axiosInstance from "../../../../config";
+import axiosInstance from "../../../config";
 
 const Lists = ({ params }) => {
   const [movies, setMovies] = useState([]);
@@ -16,6 +16,8 @@ const Lists = ({ params }) => {
   const [totalPage, setTotalPage] = useState(0);
   const searchParams = useSearchParams();
   const currentPage = searchParams.get("page");
+
+  const slugMovie = params.slug.split(".")[0];
 
   const removeAccents = (str) => {
     return str
@@ -25,14 +27,14 @@ const Lists = ({ params }) => {
       .replace(/Đ/g, "D");
   };
 
-  const type = params.slug1;
-  const path = params.slug2;
-
   useEffect(() => {
     const fetchNewMovie = async () => {
-      const res = await axiosInstance.get(`/movie?qNew=${true}`);
+      const res = await axiosInstance.get(
+        `/movie?qNew=${true}&qPage=${currentPage}`
+      );
 
       setMovies(res.data.movies);
+      setTotalPage(res.data.totalPage);
     };
 
     const fetchSeriesMovie = async () => {
@@ -42,7 +44,7 @@ const Lists = ({ params }) => {
       setTotalPage(res.data.totalPage);
     };
 
-    switch (type) {
+    switch (slugMovie) {
       case "phim-moi-cap-nhat":
         fetchNewMovie();
         setTitle("Phim mới cập nhật");
@@ -54,7 +56,7 @@ const Lists = ({ params }) => {
         console.log("haha");
         break;
     }
-  }, [path, type]);
+  }, [slugMovie, currentPage]);
 
   return (
     <div className="lists">
@@ -72,8 +74,7 @@ const Lists = ({ params }) => {
 
       <Pagination
         totalPage={totalPage}
-        type={type}
-        path={path}
+        path={params.slug}
         currentPage={currentPage}
       />
     </div>

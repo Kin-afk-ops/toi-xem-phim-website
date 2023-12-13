@@ -2,7 +2,7 @@ import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ totalPage, type, path, currentPage }) => {
+const Pagination = ({ totalPage, path, currentPage }) => {
   const router = useRouter();
 
   const handlePageClick = (data) => {
@@ -11,7 +11,7 @@ const Pagination = ({ totalPage, type, path, currentPage }) => {
       top: 0,
       // behavior: "smooth",
     });
-    router.push(`/danh-sach/${type}/${path}?page=${data.selected + 1}`);
+    router.push(`/danh-sach/${path}?page=${data.selected + 1}`);
   };
 
   return (

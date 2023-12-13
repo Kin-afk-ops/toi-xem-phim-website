@@ -35,6 +35,13 @@
 
       div {
         margin-left: 15px;
+
+        p {
+          display: -webkit-box;
+          -webkit-line-clamp: 2; /* số dòng hiển thị */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
 
       &:hover {

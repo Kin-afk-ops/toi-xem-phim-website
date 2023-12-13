@@ -1,34 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import "./navbar.scss";
 import "./responsive.scss";
 import axiosInstance from "../../config";
 import Link from "next/link";
 
-const Navbar = () => {
-  const [categories, setCategories] = useState([]);
-  const [country, setCountry] = useState([]);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      const res = await axiosInstance.get("/categories");
-
-      setCategories(res.data);
-    };
-
-    getCategories();
-  }, []);
-
-  useEffect(() => {
-    const getCountry = async () => {
-      const res = await axiosInstance.get("/country");
-
-      setCountry(res.data);
-    };
-
-    getCountry();
-  }, []);
+const Navbar = async () => {
+  const resCountries = await axiosInstance.get("/country");
+  const resCate = await axiosInstance.get("/categories");
+  const categories = resCate.data;
+  const countries = resCountries.data;
 
   return (
     <div className="navbar">
@@ -55,17 +34,16 @@ const Navbar = () => {
             </span>
           </div>
           <ul>
-            {categories.length !== 0 &&
-              categories.map((c, index) => (
-                <li key={index}>
-                  <Link
-                    className="link"
-                    href={`/danh-sach/categories/${c.name.toLowerCase()}?page=1`}
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
+            {categories?.map((c, index) => (
+              <li key={index}>
+                <Link
+                  className="link"
+                  href={`/danh-sach/categories/${c.name.toLowerCase()}?page=1`}
+                >
+                  {c.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -77,17 +55,16 @@ const Navbar = () => {
             </span>
           </div>
           <ul>
-            {country.length !== 0 &&
-              country.map((c, index) => (
-                <li key={index}>
-                  <Link
-                    className="link navbarItemsChild"
-                    href={`/danh-sach/country/${c.name.toLowerCase()}?page=1`}
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
+            {countries?.map((c, index) => (
+              <li key={index}>
+                <Link
+                  className="link navbarItemsChild"
+                  href={`/danh-sach/country/${c.name.toLowerCase()}?page=1`}
+                >
+                  {c.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

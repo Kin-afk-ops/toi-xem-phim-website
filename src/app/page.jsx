@@ -1,8 +1,6 @@
 import axiosInstance from "../config";
 import "./page.scss";
-import GoodMovie from "@/components/goodMovie/GoodMovie";
 import HomeList from "@/components/homeList/HomeList";
-import Posts from "@/components/posts/Posts";
 
 export default async function Home() {
   const res = await axiosInstance.get("/home");
@@ -19,17 +17,14 @@ export default async function Home() {
   const movies = {
     data: res.data,
     name: "Phim mới cập nhật",
-    path: "phim-moi-cap-nhat/phim-moi",
   };
   const seriesMovies = {
     data: resSeries.data,
     name: "Phim bộ mới cập nhật",
-    path: "phim-bo-moi-cap-nhat/series",
   };
   const movieMovies = {
     data: resMovies.data,
     name: "Phim lẻ mới cập nhật",
-    path: "phim-le-moi-cap-nhat/movie",
   };
 
   const isEmptyObject = (obj) => {
@@ -37,18 +32,10 @@ export default async function Home() {
   };
 
   return (
-    <div className="home grid wide">
-      <div className="row no-gutters">
-        <div className="c-9">
-          {isEmptyObject(hotMovies) && <HomeList movies={hotMovies} />}
-
-          <HomeList movies={movies} />
-          <HomeList movies={seriesMovies} />
-          <HomeList movies={movieMovies} />
-          <Posts />
-        </div>
-        <GoodMovie />
-      </div>
+    <div>
+      <HomeList movies={movies} />
+      <HomeList movies={seriesMovies} />
+      <HomeList movies={movieMovies} />
     </div>
   );
 }
