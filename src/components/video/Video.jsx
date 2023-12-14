@@ -34,6 +34,8 @@ const Video = (props) => {
     });
   }
 
+  console.log(urlMovie);
+
   const handleClick = (d) => {
     if (window.screen.width <= 480) {
       window.scrollTo({
@@ -86,7 +88,7 @@ const Video = (props) => {
             {dataArray.map((d, index) => (
               <Link
                 key={index}
-                href={`/xem-phim/${movie?.movie.slug}?ep=${d.name}`}
+                href={`/xem-phim/${movie?.movie.slug}?tap=${d.name}`}
                 className={
                   d.name === ep
                     ? "link singleMovieEpBtn epActive"

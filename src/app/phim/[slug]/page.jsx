@@ -24,7 +24,7 @@ const InfoMovie = ({ movie }) => {
     if (movie.episodes[0].server_data[0].slug === "full") {
       router.push(`/xem-phim/${infoMovie.slug}`);
     } else {
-      router.push(`/xem-phim/${infoMovie.slug}?ep=1`);
+      router.push(`/xem-phim/${infoMovie.slug}?tap=1`);
     }
   };
 

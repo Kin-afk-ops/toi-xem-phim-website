@@ -20,7 +20,7 @@ const MovieLists = ({ movies }) => {
   let { data } = movies;
 
   return (
-    <div className="movieList grid main-container">
+    <div className="movieList main-container">
       <div className="movieListTitle">
         <h2 className="mainTitle">{movies?.name}</h2>
         <Link
@@ -41,7 +41,7 @@ const MovieLists = ({ movies }) => {
 
       <Swiper
         modules={[Navigation, A11y]}
-        spaceBetween={25}
+        spaceBetween={20}
         slidesPerView={5}
         loop={true}
         navigation

@@ -38,7 +38,7 @@ const Navbar = async () => {
               <li key={index}>
                 <Link
                   className="link"
-                  href={`/danh-sach/categories/${c.name.toLowerCase()}?page=1`}
+                  href={`/danh-sach/danh-muc-the-loai.html?category=${c.slug}&page=1`}
                 >
                   {c.name}
                 </Link>
@@ -59,7 +59,7 @@ const Navbar = async () => {
               <li key={index}>
                 <Link
                   className="link navbarItemsChild"
-                  href={`/danh-sach/country/${c.name.toLowerCase()}?page=1`}
+                  href={`/danh-sach/danh-muc-quoc-gia.html?country=${c.slug}&page=1`}
                 >
                   {c.name}
                 </Link>
@@ -71,7 +71,7 @@ const Navbar = async () => {
         <div className="navbarItems">
           <Link
             className="link navbarItemsLink"
-            href={`/danh-sach/categories/animeMovie?page=1`}
+            href={`/danh-sach/phim-le-moi-cap-nhat.html?page=1`}
           >
             Phim lẻ
           </Link>
@@ -80,7 +80,7 @@ const Navbar = async () => {
         <div className="navbarItems">
           <Link
             className="link navbarItemsLink"
-            href={`/danh-sach/categories/animeSeries?page=1`}
+            href={`/danh-sach/phim-bo-moi-cap-nhat.html?page=1`}
           >
             Phim bộ
           </Link>

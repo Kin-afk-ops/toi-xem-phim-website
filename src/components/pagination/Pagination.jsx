@@ -1,3 +1,5 @@
+"use client";
+
 import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
@@ -6,7 +8,6 @@ const Pagination = ({ totalPage, path, currentPage }) => {
   const router = useRouter();
 
   const handlePageClick = (data) => {
-    console.log(data);
     window.scrollTo({
       top: 0,
       // behavior: "smooth",

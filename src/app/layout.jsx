@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
       <body className={poppins.className}>
         <Header />
         <div className="home grid wide">
-          <div className="row">
+          <div className="row no-gutters">
             <div className="c-9"> {children}</div>
             <GoodMovie movies={resHot.data} />
           </div>
