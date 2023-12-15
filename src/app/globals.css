@@ -22,13 +22,21 @@ html {
 }
 
 .errorTitle {
-  font-size: 16px;
+  font-size: 20px;
   color: white;
   text-align: center;
 }
 
 .errorWrap {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorTitleLink:hover {
+  color: var(--primary-color);
 }
 
 .mainTitle {
@@ -38,4 +46,8 @@ html {
 
 .main-container {
   margin: 50px 0;
+}
+
+.home {
+  background-color: var(--background-color);
 }

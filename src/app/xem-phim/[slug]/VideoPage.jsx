@@ -15,7 +15,7 @@ const VideoPage = ({ params }) => {
 
   const searchParams = useSearchParams();
 
-  const slug = params?.slug;
+  const slug = params?.slug.split(".")[0];
 
   useEffect(() => {
     const getMovie = async () => {
@@ -32,7 +32,6 @@ const VideoPage = ({ params }) => {
 
   const ep = searchParams.get("tap") || "";
 
-  const episode_current = infoMovie?.episode_current;
   const cateMovie = [];
   const countryMovie = [];
   let nameTitle = "";

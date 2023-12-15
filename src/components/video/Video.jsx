@@ -27,14 +27,12 @@ const Video = (props) => {
 
   if (dataArray.length !== 0) {
     dataArray.forEach((data) => {
-      if (data.slug === ep || data.slug === "full") {
+      if (data.name === ep || data.name === "Full") {
         urlMovie = data.link_embed;
         fileName = data.filename;
       }
     });
   }
-
-  console.log(urlMovie);
 
   const handleClick = (d) => {
     if (window.screen.width <= 480) {
@@ -53,22 +51,26 @@ const Video = (props) => {
 
   return (
     <div className="video">
-      {ep ? (
-        <h3>{`${movie.movie.name} tập ${ep}`}</h3>
+      {urlMovie && ep ? (
+        <h1>{`${movie.movie.name} tập ${ep}`}</h1>
       ) : (
-        <h3>{`${movie.movie.name} `}</h3>
+        <h1>{`${movie.movie.name} `}</h1>
       )}
 
-      <div className="container">
-        <iframe
-          className="responsive-iframe"
-          style={{ border: "none" }}
-          allowFullScreen={true}
-          width="720"
-          height="480"
-          src={urlMovie}
-          loading="lazy"
-        ></iframe>
+      <div className={urlMovie ? "container" : "containerNoUrl"}>
+        {urlMovie ? (
+          <iframe
+            className="responsive-iframe"
+            style={{ border: "none" }}
+            allowFullScreen={true}
+            width="720"
+            height="480"
+            src={urlMovie}
+            loading="lazy"
+          ></iframe>
+        ) : (
+          <h4>Chọn tập phim ở phía dưới</h4>
+        )}
       </div>
       <div className="videoServer">
         {severName.map((s, index) => (

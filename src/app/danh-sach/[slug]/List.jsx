@@ -27,6 +27,7 @@ const Lists = ({ params, searchParams }) => {
 
   const country = searchParams.country;
   const category = searchParams.category;
+  const query = searchParams.q;
 
   useEffect(() => {
     const getNewMovieAll = async () => {
@@ -78,6 +79,16 @@ const Lists = ({ params, searchParams }) => {
       seTitle("Kết quả");
     };
 
+    const getSearchMovie = async () => {
+      const resSearchMovie = await axiosInstance.get(
+        `/search/movie?search=${query}&qPage=${currentPage}`
+      );
+
+      setMovies(resSearchMovie.data.movies);
+      setTotalPage(resSearchMovie.data.totalPage);
+      seTitle("Kết quả");
+    };
+
     switch (slugMovie) {
       case "phim-moi-cap-nhat":
         getNewMovieAll();
@@ -97,11 +108,15 @@ const Lists = ({ params, searchParams }) => {
       case "danh-muc-the-loai":
         getCategoryMovie();
         break;
+
+      case "tim-kiem":
+        getSearchMovie();
+        break;
       default:
         console.log("haha");
         break;
     }
-  }, [slugMovie, currentPage, country, category]);
+  }, [slugMovie, currentPage, country, query, category]);
 
   // if (searchCate) {
   //   const resSearchCate = await axiosInstance.get(

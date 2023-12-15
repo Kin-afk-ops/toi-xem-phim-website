@@ -1,22 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import "./header.scss";
 import "./responsive.scss";
 
 const InputHeader = () => {
   const [query, setQuery] = useState("");
+  const router = useRouter();
 
   const handleKeyDown = (e) => {
+    const searchQuery = query.split(" ").join("+");
     if (e.keyCode === 13) {
-      window.location.replace(
-        `/danh-sach/search/${query.toLowerCase()}?page=1`
-      );
+      router.push(`/danh-sach/tim-kiem?q=${searchQuery}&page=1`);
     }
   };
 
   const handleClick = () => {
-    window.location.replace(`/danh-sach/search/${query.toLowerCase()}?page=1`);
+    const searchQuery = query.split(" ").join("+");
+
+    router.push(`/danh-sach/tim-kiem?q=${searchQuery}&page=1`);
   };
 
   return (

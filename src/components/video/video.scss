@@ -5,9 +5,20 @@
   justify-content: center;
   padding: 40px;
 
-  h3 {
+  h1 {
+    width: 100%;
     color: white;
     margin-bottom: 30px;
+    padding-left: 5px;
+    border-left: 5px solid var(--primary-color);
+  }
+
+  .containerNoUrl {
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
   }
 
   .container {
@@ -15,6 +26,7 @@
     overflow: hidden;
     width: 100%;
     padding-top: 56.25%;
+
     .responsive-iframe {
       position: absolute;
       top: 0;

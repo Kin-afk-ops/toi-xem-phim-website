@@ -1,5 +1,5 @@
+import Loading from "@/components/loading/Loading";
 import axiosInstance from "../config";
-import "./page.scss";
 import HomeList from "@/components/homeList/HomeList";
 
 export default async function Home() {
@@ -33,9 +33,17 @@ export default async function Home() {
 
   return (
     <div>
-      <HomeList movies={movies} />
-      <HomeList movies={seriesMovies} />
-      <HomeList movies={movieMovies} />
+      {isEmptyObject(movies) ||
+      isEmptyObject(seriesMovies) ||
+      isEmptyObject(movieMovies) ? (
+        <Loading />
+      ) : (
+        <>
+          <HomeList movies={movies} />
+          <HomeList movies={seriesMovies} />
+          <HomeList movies={movieMovies} />
+        </>
+      )}
     </div>
   );
 }

@@ -41,7 +41,7 @@ const MovieLists = ({ movies }) => {
 
       <Swiper
         modules={[Navigation, A11y]}
-        spaceBetween={20}
+        spaceBetween={0}
         slidesPerView={5}
         loop={true}
         navigation

@@ -8,6 +8,13 @@
     display: flex;
     justify-content: space-between;
 
+    h2 {
+      margin-left: 10px;
+      font-size: 25px;
+      border-left: 5px solid var(--primary-color);
+      padding-left: 10px;
+    }
+
     .linkList {
       color: white;
       background-color: var(--primary-color);

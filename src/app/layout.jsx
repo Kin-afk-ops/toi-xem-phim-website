@@ -2,7 +2,6 @@ import "../assets/icon/fontawesome/css/all.min.css";
 import "./globals.css";
 import "./grid.css";
 import "./customSwiper.css";
-import "./page.scss";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Poppins } from "next/font/google";
