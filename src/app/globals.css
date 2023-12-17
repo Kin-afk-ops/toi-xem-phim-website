@@ -12,7 +12,7 @@
 html {
   width: 100%;
   background-image: url("../assets/images/background.jpg");
-  overflow: hidden;
+  /* overflow: hidden; */
   overflow-y: overlay;
 }
 

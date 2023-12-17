@@ -1,0 +1,23 @@
+@media (min-width: 740px) and (max-width: 1023px) {
+  .infoMovieDesc {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 739px) {
+  .infoMovieTop {
+    padding: 0 15px !important;
+    .leftWrap {
+      img {
+        height: 500px !important;
+      }
+    }
+    .infoMovieContent {
+      padding-left: 0 !important;
+      .infoMovieName {
+        margin-top: 20px;
+        padding-left: 0;
+      }
+    }
+  }
+}

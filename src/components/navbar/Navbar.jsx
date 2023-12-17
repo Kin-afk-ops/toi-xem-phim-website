@@ -11,21 +11,7 @@ const Navbar = async () => {
 
   return (
     <div className="navbar">
-      <label htmlFor="buttonCheck" className="phoneButton">
-        <i className="fa-solid fa-bars"></i>
-      </label>
-
-      <input
-        type="checkbox"
-        style={{ display: "none" }}
-        id="buttonCheck"
-        className="buttonCheckbox"
-      />
-      <label htmlFor="buttonCheck" className="overlay"></label>
       <div className="navbarList">
-        <label htmlFor="buttonCheck" className="navbarListCloseIcon">
-          <i className="fa-regular fa-circle-xmark"></i>
-        </label>
         <div className="navbarItems">
           <div>
             <span>
@@ -40,7 +26,7 @@ const Navbar = async () => {
                   className="link"
                   href={`/danh-sach/danh-muc-the-loai.html?category=${c.slug}&page=1`}
                 >
-                  {c.name}
+                  <span className="gach">- </span> {c.name}
                 </Link>
               </li>
             ))}
@@ -61,7 +47,7 @@ const Navbar = async () => {
                   className="link navbarItemsChild"
                   href={`/danh-sach/danh-muc-quoc-gia.html?country=${c.slug}&page=1`}
                 >
-                  {c.name}
+                  <span className="gach">-&nbsp;</span> {c.name}
                 </Link>
               </li>
             ))}

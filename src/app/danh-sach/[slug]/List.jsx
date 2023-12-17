@@ -135,7 +135,7 @@ const Lists = ({ params, searchParams }) => {
       {movies.length === 0 ? (
         <Loading />
       ) : (
-        <div className="movieListItems row">
+        <div className="movieListItems row sm-gutter">
           {movies.map((movie, index) => (
             <MovieListItem movie={movie} key={index} listMode={true} />
           ))}
@@ -146,6 +146,7 @@ const Lists = ({ params, searchParams }) => {
         totalPage={totalPage}
         path={params.slug}
         currentPage={currentPage}
+        setMovies={setMovies}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import "./movieListItem.scss";
-import "./responsive.scss";
+// import "./responsive.scss";
 import Link from "next/link";
 // import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -22,7 +22,9 @@ const MovieListItem = ({ movie, listMode }) => {
     <Link
       href={`/phim/${slug}.html`}
       className={
-        listMode ? "link movieListItem col l-2-4" : "link movieListItem"
+        listMode
+          ? "link movieListItem col m-2-4 l-2-4 s-6"
+          : "link movieListItem"
       }
       onClick={handleClick}
     >

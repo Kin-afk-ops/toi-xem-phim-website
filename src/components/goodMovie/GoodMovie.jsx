@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const GoodMovie = ({ movies }) => {
   return (
-    <div className="goodMovie c-3">
+    <div className="goodMovie l-3 m-0 s-0">
       <h2 className="mainTitle">PHIM HOT</h2>
       <ul>
         {movies?.map((movie, index) => (

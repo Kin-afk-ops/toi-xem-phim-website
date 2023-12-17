@@ -28,13 +28,11 @@ export default async function RootLayout({ children }) {
         <Header />
         <div className="home grid wide">
           <div className="row no-gutters">
-            <div className="c-9"> {children}</div>
+            <div className="l-9 m-12 s-12"> {children}</div>
             <GoodMovie movies={resHot.data} />
           </div>
         </div>
         <Footer />
-
-        <div id="fb-root"></div>
       </body>
     </html>
   );

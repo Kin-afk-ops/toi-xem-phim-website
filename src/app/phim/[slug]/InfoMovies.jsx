@@ -1,8 +1,8 @@
 "use client";
 
-import Loading from "../../../components/loading/Loading";
 import "./infoMovie.scss";
 import { useRouter } from "next/navigation";
+import "./responsive.scss";
 
 const InfoMovie = ({ movie }) => {
   const router = useRouter();
@@ -31,8 +31,8 @@ const InfoMovie = ({ movie }) => {
   return (
     <div className="infoMovie">
       <div className="infoMovieCard grid ">
-        <div className="infoMovieTop  row">
-          <div className="c-3 leftWrap">
+        <div className="infoMovieTop row no-gutters">
+          <div className="c-3 m-4 s-12 leftWrap">
             <img src={infoMovie?.thumb_url} alt="" onClick={handleClick} />
             <button className="infoMovieWatch" onClick={handleClick}>
               Xem phim ngay
@@ -40,7 +40,7 @@ const InfoMovie = ({ movie }) => {
             <i class="fa-regular fa-circle-play infoMovieIcon"></i>
           </div>
 
-          <div className="infoMovieContent c-9">
+          <div className="infoMovieContent c-9 m-8 s-12">
             <div className="infoMovieName">{infoMovie?.name}</div>
 
             <div className="infoMovieInfo">

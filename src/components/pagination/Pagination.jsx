@@ -4,14 +4,15 @@ import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ totalPage, path, currentPage }) => {
+const Pagination = ({ totalPage, path, currentPage, setMovies }) => {
   const router = useRouter();
 
-  const handlePageClick = (data) => {
+  const handlePageClick = async (data) => {
     window.scrollTo({
       top: 0,
       // behavior: "smooth",
     });
+    await setMovies([]);
     router.push(`/danh-sach/${path}?page=${data.selected + 1}`);
   };
 

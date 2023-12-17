@@ -4,7 +4,7 @@
     background-color: var(--background-color);
 
     .infoMovieTop {
-      padding-left: 30px;
+      padding-left: 15px;
       display: flex;
       align-items: start;
       padding-top: 20px;
@@ -92,15 +92,15 @@
 
           .infoMovieInfoText {
             border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
             span {
               &:first-child {
                 color: #c7c7c7;
                 width: 230px;
-                display: inline-block;
               }
 
               &:last-child {
-                display: inline-block;
                 width: calc(100% - 230px);
                 color: #3399ff;
               }
