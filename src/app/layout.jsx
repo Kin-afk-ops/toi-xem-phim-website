@@ -32,6 +32,9 @@ export default async function RootLayout({ children }) {
             <GoodMovie movies={resHot.data} />
           </div>
         </div>
+        <a href="/" className="pageUp">
+          <i class="fa-regular fa-circle-up"></i>
+        </a>
         <Footer />
       </body>
     </html>

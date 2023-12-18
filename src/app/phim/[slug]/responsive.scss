@@ -19,5 +19,26 @@
         padding-left: 0;
       }
     }
+
+    .infoMovieInfo {
+      div {
+        .infoMovieInfoText {
+          border-bottom: 1px solid #333;
+          display: flex;
+          align-items: center;
+          span {
+            &:first-child {
+              color: #c7c7c7;
+              width: 190px !important;
+            }
+
+            &:last-child {
+              width: calc(100% - 190px) !important;
+              color: #3399ff;
+            }
+          }
+        }
+      }
+    }
   }
 }

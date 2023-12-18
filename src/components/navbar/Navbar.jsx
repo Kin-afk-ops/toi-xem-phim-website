@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import "./navbar.scss";
 import "./responsive.scss";
@@ -12,6 +13,7 @@ const Navbar = () => {
   const [categories, setCategories] = useState([]);
   const [countries, setCountries] = useState([]);
   const [display, setDisplay] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetData = async () => {
@@ -26,6 +28,12 @@ const Navbar = () => {
 
   const handleHidden = () => {
     setDisplay(!display);
+  };
+
+  const handleClickCate = (name) => {
+    const nameQuery = name.toLowerCase().split(" ").join("+");
+    display && setDisplay(false);
+    router.push(`/danh-sach/the-loai.html?category=${nameQuery}&page=1`);
   };
 
   return (
@@ -49,7 +57,7 @@ const Navbar = () => {
 
       <div className={display ? "display__flex navbarList" : "navbarList"}>
         <div className="navbarItems">
-          <div>
+          <div className="navbarItemsWrapper">
             <span>
               <i className="fa-solid fa-bars"></i>
               Thể loại
@@ -58,12 +66,9 @@ const Navbar = () => {
           <ul>
             {categories?.map((c, index) => (
               <li key={index}>
-                <Link
-                  className="link"
-                  href={`/danh-sach/danh-muc-the-loai.html?category=${c.slug}&page=1`}
-                >
+                <div className="link" onClick={() => handleClickCate(c.name)}>
                   <span className="gach">-&nbsp;</span> {c.name}
-                </Link>
+                </div>
               </li>
             ))}
           </ul>

@@ -77,7 +77,7 @@
 
       position: relative;
 
-      div {
+      .navbarItemsWrapper {
         span {
           i {
             margin-right: 10px;
@@ -103,7 +103,7 @@
         align-items: center;
         justify-content: center;
       }
-      div,
+      .navbarItemsWrapper,
       .navbarItemsLink {
         &:hover {
           transform: scale(1.1);

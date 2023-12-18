@@ -4,8 +4,14 @@ import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ totalPage, path, currentPage, setMovies }) => {
+const Pagination = ({ totalPage, path, currentPage, setMovies, category }) => {
   const router = useRouter();
+  let type;
+  let query;
+  if (category) {
+    type = "category";
+    query = category.split(" ").join("+");
+  }
 
   const handlePageClick = async (data) => {
     window.scrollTo({
@@ -13,7 +19,9 @@ const Pagination = ({ totalPage, path, currentPage, setMovies }) => {
       // behavior: "smooth",
     });
     await setMovies([]);
-    router.push(`/danh-sach/${path}?page=${data.selected + 1}`);
+    router.push(
+      `/danh-sach/${path}?${type}=${query}&page=${data.selected + 1}`
+    );
   };
 
   return (

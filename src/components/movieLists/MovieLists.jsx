@@ -3,7 +3,7 @@
 import Link from "next/link";
 import MovieListItem from "../movieListItem/MovieListItem";
 import "./movieLists.scss";
-// import "./responsive.scss";
+import "./responsive.scss";
 import slugify from "slugify";
 
 // Import Swiper React components

@@ -63,3 +63,25 @@ html {
 .display__none {
   display: none !important;
 }
+
+.pageUp {
+  display: none;
+}
+
+@media (max-width: 739px) {
+  .pageUp {
+    position: fixed;
+    display: flex;
+    font-size: 40px;
+    color: white;
+    background-color: var(--background-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    right: 20px;
+    bottom: 70px;
+  }
+}

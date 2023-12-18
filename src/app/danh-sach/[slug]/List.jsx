@@ -27,9 +27,11 @@ const Lists = ({ params, searchParams }) => {
 
   const country = searchParams.country;
   const category = searchParams.category;
+
   const query = searchParams.q;
 
   useEffect(() => {
+    setMovies([]);
     const getNewMovieAll = async () => {
       const resNew = await axiosInstance.get(
         `/movie?qNew=${true}&qPage=${currentPage}`
@@ -46,7 +48,7 @@ const Lists = ({ params, searchParams }) => {
 
       setMovies(resSeries.data.movies);
       setTotalPage(resSeries.data.totalPage);
-      seTitle("Phim bộ mới cập nhập");
+      seTitle("Phim bộ mới cập nhật");
     };
 
     const getNewMovie = async () => {
@@ -56,7 +58,7 @@ const Lists = ({ params, searchParams }) => {
 
       setMovies(resMovie.data.movies);
       setTotalPage(resMovie.data.totalPage);
-      seTitle("Phim lẻ mới cập nhập");
+      seTitle("Phim lẻ mới cập nhật");
     };
 
     const getCountryMovie = async () => {
@@ -76,7 +78,7 @@ const Lists = ({ params, searchParams }) => {
 
       setMovies(resCategoryMovie.data.movies);
       setTotalPage(resCategoryMovie.data.totalPage);
-      seTitle("Kết quả");
+      seTitle(`Phim ${category}`);
     };
 
     const getSearchMovie = async () => {
@@ -105,7 +107,7 @@ const Lists = ({ params, searchParams }) => {
         getCountryMovie();
         break;
 
-      case "danh-muc-the-loai":
+      case "the-loai":
         getCategoryMovie();
         break;
 
@@ -147,6 +149,7 @@ const Lists = ({ params, searchParams }) => {
         path={params.slug}
         currentPage={currentPage}
         setMovies={setMovies}
+        category={category}
       />
     </div>
   );
