@@ -20,22 +20,18 @@ export default async function Home() {
     name: "Phim lẻ mới cập nhật",
   };
 
-  const isEmptyObject = (obj) => {
-    return JSON.stringify(obj) === "{}";
-  };
-
   return (
     <div>
-      {isEmptyObject(movies) ||
-      isEmptyObject(seriesMovies) ||
-      isEmptyObject(movieMovies) ? (
-        <Loading />
-      ) : (
+      {movies.data.length === 10 &&
+      seriesMovies.data.length === 10 &&
+      movieMovies.data.length === 10 ? (
         <>
           <HomeList movies={movies} />
           <HomeList movies={seriesMovies} />
           <HomeList movies={movieMovies} />
         </>
+      ) : (
+        <Loading />
       )}
     </div>
   );

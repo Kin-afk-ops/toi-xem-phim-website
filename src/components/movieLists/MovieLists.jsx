@@ -58,14 +58,13 @@ const MovieLists = ({ movies }) => {
         slidesPerView={screenWidth}
         loop={true}
         navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
-        {data?.map((movie, index) => (
-          <SwiperSlide key={index}>
-            <MovieListItem movie={movie} />
-          </SwiperSlide>
-        ))}
+        {data &&
+          data?.map((movie, index) => (
+            <SwiperSlide key={index}>
+              <MovieListItem movie={movie} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

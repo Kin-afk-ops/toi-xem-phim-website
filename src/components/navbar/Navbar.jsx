@@ -1,17 +1,53 @@
+"use client";
+import { useState, useEffect } from "react";
+
 import "./navbar.scss";
 import "./responsive.scss";
+import Image from "next/image";
 import axiosInstance from "../../config";
+import logo from "../../assets/images/logo.png";
 import Link from "next/link";
 
-const Navbar = async () => {
-  const resCountries = await axiosInstance.get("/country");
-  const resCate = await axiosInstance.get("/categories");
-  const categories = resCate.data;
-  const countries = resCountries.data;
+const Navbar = () => {
+  const [categories, setCategories] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [display, setDisplay] = useState(false);
+
+  useEffect(() => {
+    const fetData = async () => {
+      const resCate = await axiosInstance.get("/categories");
+      const resCountries = await axiosInstance.get("/country");
+      setCategories(resCate.data);
+      setCountries(resCountries.data);
+    };
+
+    fetData();
+  }, []);
+
+  const handleHidden = () => {
+    setDisplay(!display);
+  };
 
   return (
     <div className="navbar">
-      <div className="navbarList">
+      <div className="navbarListIcon" onClick={handleHidden}>
+        {display ? (
+          <i class="fa-solid fa-xmark"></i>
+        ) : (
+          <i className="fa-solid fa-bars"></i>
+        )}
+      </div>
+
+      <div
+        className={display ? " display__block overlay" : "overlay"}
+        onClick={handleHidden}
+      ></div>
+
+      <Link href="/" className="headerLogo link">
+        <Image src={logo} alt="Logo" />
+      </Link>
+
+      <div className={display ? "display__flex navbarList" : "navbarList"}>
         <div className="navbarItems">
           <div>
             <span>
@@ -26,7 +62,7 @@ const Navbar = async () => {
                   className="link"
                   href={`/danh-sach/danh-muc-the-loai.html?category=${c.slug}&page=1`}
                 >
-                  <span className="gach">- </span> {c.name}
+                  <span className="gach">-&nbsp;</span> {c.name}
                 </Link>
               </li>
             ))}

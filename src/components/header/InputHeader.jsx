@@ -7,7 +7,12 @@ import "./responsive.scss";
 
 const InputHeader = () => {
   const [query, setQuery] = useState("");
+  const [display, setDisplay] = useState(false);
   const router = useRouter();
+
+  const handleHidden = () => {
+    setDisplay(!display);
+  };
 
   const handleKeyDown = (e) => {
     const searchQuery = query.split(" ").join("+");
@@ -23,34 +28,29 @@ const InputHeader = () => {
   };
 
   return (
-    <div className="headerInput">
-      <label
-        htmlFor="headerSearchCheckbox"
-        className="headerSearchCheckboxLogo"
-      >
-        <i className="fa-solid fa-magnifying-glass"></i>
-      </label>
+    <>
+      <div className="inputIcon" onClick={handleHidden}>
+        {display ? (
+          <i class="fa-solid fa-xmark"></i>
+        ) : (
+          <i class="fa-solid fa-magnifying-glass"></i>
+        )}
+      </div>
+      <div className={display ? "display__flex headerInput" : "headerInput"}>
+        <div className="overlay"></div>
+        <input
+          type="text"
+          placeholder="Nhập tên bộ phim..."
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
+          enterKeyHint="search"
+        />
 
-      <input
-        style={{ display: "none" }}
-        type="checkbox"
-        id="headerSearchCheckbox"
-        className="headerSearchCheckbox"
-      />
-
-      <label htmlFor="headerSearchCheckbox" className="overlay"></label>
-      <input
-        type="text"
-        placeholder="Nhập tên bộ phim..."
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleKeyDown}
-        enterKeyHint="search"
-      />
-
-      <button className="headerButton" onClick={handleClick}>
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </div>
+        <button className="headerButton" onClick={handleClick}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </>
   );
 };
 

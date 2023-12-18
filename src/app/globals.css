@@ -12,7 +12,7 @@
 html {
   width: 100%;
   background-image: url("../assets/images/background.jpg");
-  /* overflow: hidden; */
+  overflow: hidden;
   overflow-y: overlay;
 }
 
@@ -50,4 +50,16 @@ html {
 
 .home {
   background-color: var(--background-color);
+}
+
+.display__flex {
+  display: flex !important;
+}
+
+.display__block {
+  display: block !important;
+}
+
+.display__none {
+  display: none !important;
 }

@@ -1,20 +1,22 @@
 @media (max-width: 739px) {
-}
+  .header {
+    .headerContent {
+      .inputIcon {
+        width: 20%;
+        font-size: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: white;
+        padding: 5px;
+      }
 
-@media (min-width: 740px) and (max-width: 1023px) {
-  .headerContent {
-    .phoneButton {
-      display: block;
-      font-size: 40px;
-      color: white;
-    }
-
-    .buttonCheckbox:checked ~ .navbar {
-      display: block;
-    }
-
-    .headerLogo {
-      img {
+      .headerInput {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
       }
     }
   }
