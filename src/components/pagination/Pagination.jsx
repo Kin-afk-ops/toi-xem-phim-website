@@ -4,24 +4,41 @@ import "./pagination.scss";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
-const Pagination = ({ totalPage, path, currentPage, setMovies, category }) => {
+const Pagination = ({
+  totalPage,
+  path,
+  currentPage,
+  category,
+  country,
+  search,
+}) => {
   const router = useRouter();
   let type;
   let query;
   if (category) {
     type = "category";
     query = category.split(" ").join("+");
+  } else if (country) {
+    type = "country";
+    query = country.split(" ").join("+");
+  } else if (search) {
+    type = "q";
+    query = search.split(" ").join("+");
   }
 
-  const handlePageClick = async (data) => {
+  const handlePageClick = (data) => {
     window.scrollTo({
       top: 0,
       // behavior: "smooth",
     });
-    await setMovies([]);
-    router.push(
-      `/danh-sach/${path}?${type}=${query}&page=${data.selected + 1}`
-    );
+
+    if (category || country || search) {
+      router.push(
+        `/danh-sach/${path}?${type}=${query}&page=${data.selected + 1}`
+      );
+    } else {
+      router.push(`/danh-sach/${path}?page=${data.selected + 1}`);
+    }
   };
 
   return (

@@ -43,9 +43,6 @@ const MovieListItem = ({ movie, listMode }) => {
         />
 
         <i className="fa-solid fa-play playIcon"></i>
-        {movie?.status && (
-          <div className="movieListItemStatus">{movie?.status}</div>
-        )}
       </div>
 
       <div className="movieListItemName">

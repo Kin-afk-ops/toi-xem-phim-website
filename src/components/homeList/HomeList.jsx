@@ -1,4 +1,3 @@
-import React from "react";
 import MovieLists from "../movieLists/MovieLists";
 
 const HomeList = ({ movies }) => {

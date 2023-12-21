@@ -36,11 +36,17 @@ const Navbar = () => {
     router.push(`/danh-sach/the-loai.html?category=${nameQuery}&page=1`);
   };
 
+  const handleClickCountry = (name) => {
+    const nameQuery = name.toLowerCase().split(" ").join("+");
+    display && setDisplay(false);
+    router.push(`/danh-sach/quoc-gia.html?country=${nameQuery}&page=1`);
+  };
+
   return (
     <div className="navbar">
       <div className="navbarListIcon" onClick={handleHidden}>
         {display ? (
-          <i class="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         ) : (
           <i className="fa-solid fa-bars"></i>
         )}
@@ -75,7 +81,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbarItems">
-          <div>
+          <div className="navbarItemsWrapper">
             <span>
               <i className="fa-sharp fa-solid fa-globe"></i>
               Quốc gia
@@ -84,12 +90,12 @@ const Navbar = () => {
           <ul>
             {countries?.map((c, index) => (
               <li key={index}>
-                <Link
+                <div
                   className="link navbarItemsChild"
-                  href={`/danh-sach/danh-muc-quoc-gia.html?country=${c.slug}&page=1`}
+                  onClick={() => handleClickCountry(c.name)}
                 >
                   <span className="gach">-&nbsp;</span> {c.name}
-                </Link>
+                </div>
               </li>
             ))}
           </ul>

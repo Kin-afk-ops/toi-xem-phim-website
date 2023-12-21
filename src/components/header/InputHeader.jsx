@@ -18,22 +18,23 @@ const InputHeader = () => {
     const searchQuery = query.split(" ").join("+");
     if (e.keyCode === 13) {
       router.push(`/danh-sach/tim-kiem?q=${searchQuery}&page=1`);
+      display && setDisplay(false);
     }
   };
 
   const handleClick = () => {
     const searchQuery = query.split(" ").join("+");
-
     router.push(`/danh-sach/tim-kiem?q=${searchQuery}&page=1`);
+    display && setDisplay(false);
   };
 
   return (
     <>
       <div className="inputIcon" onClick={handleHidden}>
         {display ? (
-          <i class="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         ) : (
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i className="fa-solid fa-magnifying-glass"></i>
         )}
       </div>
       <div className={display ? "display__flex headerInput" : "headerInput"}>

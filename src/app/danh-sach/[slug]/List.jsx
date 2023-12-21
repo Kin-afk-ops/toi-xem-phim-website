@@ -68,7 +68,7 @@ const Lists = ({ params, searchParams }) => {
 
       setMovies(resCountryMovie.data.movies);
       setTotalPage(resCountryMovie.data.totalPage);
-      seTitle("Kết quả");
+      seTitle(`Phim ${country.toUpperCase()}`);
     };
 
     const getCategoryMovie = async () => {
@@ -88,7 +88,7 @@ const Lists = ({ params, searchParams }) => {
 
       setMovies(resSearchMovie.data.movies);
       setTotalPage(resSearchMovie.data.totalPage);
-      seTitle("Kết quả");
+      seTitle(`Kết quả của "${query}"`);
     };
 
     switch (slugMovie) {
@@ -103,7 +103,7 @@ const Lists = ({ params, searchParams }) => {
         getNewMovie();
         break;
 
-      case "danh-muc-quoc-gia":
+      case "quoc-gia":
         getCountryMovie();
         break;
 
@@ -119,16 +119,6 @@ const Lists = ({ params, searchParams }) => {
         break;
     }
   }, [slugMovie, currentPage, country, query, category]);
-
-  // if (searchCate) {
-  //   const resSearchCate = await axiosInstance.get(
-  //     `/movie?qCategory=${searchCate}&qPage=${1}`
-  //   );
-
-  //   movies = resSearchCate.data.movies;
-  //   totalPage = resSearchCate.data.totalPage;
-  //   title = `Kết quả cho ${searchCate.toUpperCase()}`;
-  // }
 
   return (
     <div className="lists">
@@ -148,8 +138,9 @@ const Lists = ({ params, searchParams }) => {
         totalPage={totalPage}
         path={params.slug}
         currentPage={currentPage}
-        setMovies={setMovies}
         category={category}
+        country={country}
+        search={query}
       />
     </div>
   );

@@ -19,7 +19,6 @@ const GoodMovie = ({ movies }) => {
               />
               <div>
                 <p>{movie.name}</p>
-                <p>{movie.status}</p>
               </div>
             </li>
           </Link>

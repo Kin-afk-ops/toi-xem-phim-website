@@ -1,7 +1,7 @@
 "use client";
 
-import "./infoMovie.scss";
 import { useRouter } from "next/navigation";
+import "./infoMovie.scss";
 import "./responsive.scss";
 
 const InfoMovie = ({ movie }) => {
@@ -37,7 +37,7 @@ const InfoMovie = ({ movie }) => {
             <button className="infoMovieWatch" onClick={handleClick}>
               Xem phim ngay
             </button>
-            <i class="fa-regular fa-circle-play infoMovieIcon"></i>
+            <i className="fa-regular fa-circle-play infoMovieIcon"></i>
           </div>
 
           <div className="infoMovieContent c-9 m-8 s-12">
@@ -106,7 +106,7 @@ const InfoMovie = ({ movie }) => {
                 <div className="infoMovieInfoText">
                   <span>Đạo diễn: </span>
                   <span>
-                    {infoMovie?.director
+                    {infoMovie?.director[0] !== ""
                       ? infoMovie?.director.join(", ")
                       : "Đang cập nhật"}
                   </span>
@@ -117,7 +117,7 @@ const InfoMovie = ({ movie }) => {
                 <div className="infoMovieInfoText">
                   <span>Diễn viên: </span>
                   <span>
-                    {infoMovie?.actor
+                    {infoMovie?.actor[0] !== " "
                       ? infoMovie?.actor.join(", ")
                       : "Đang cập nhật"}
                   </span>
@@ -127,21 +127,30 @@ const InfoMovie = ({ movie }) => {
               <div>
                 <div className="infoMovieInfoText">
                   <span>Thể loại: </span>
-                  <span>{cateMovie?.toString()}</span>
+                  <span>
+                    {cateMovie.length !== 0
+                      ? cateMovie?.toString()
+                      : "Đang cập nhật"}
+                  </span>
                 </div>
               </div>
 
               <div>
                 <div className="infoMovieInfoText">
                   <span>Quốc gia: </span>
-                  <span>{countryMovie?.toString()}</span>
+                  <span>
+                    {countryMovie.length !== 0
+                      ? countryMovie?.toString()
+                      : "Đang cập nhật"}
+                  </span>
                 </div>
               </div>
             </div>
             <h3 className="mainTitle infoMovieDescTitle">Mô tả</h3>
-            <div className="infoMovieDesc">
-              <p dangerouslySetInnerHTML={{ __html: infoMovie?.content }}></p>
-            </div>
+            <div
+              className="infoMovieDesc"
+              dangerouslySetInnerHTML={{ __html: infoMovie?.content }}
+            ></div>
           </div>
         </div>
       </div>

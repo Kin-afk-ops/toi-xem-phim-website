@@ -4,9 +4,9 @@ import { useState } from "react";
 import "./video.scss";
 import "./responsive.scss";
 import Link from "next/link";
-
 const Video = (props) => {
   const { movie, ep } = props;
+  const [load, setLoad] = useState(false);
   const infoMovie = movie.episodes;
   let dataArray = [];
   const [serverMovie, setServerMovie] = useState(infoMovie[0].server_name);
@@ -34,20 +34,20 @@ const Video = (props) => {
     });
   }
 
-  const handleClick = (d) => {
-    if (window.screen.width <= 480) {
-      window.scrollTo({
-        top: 1000,
-      });
-    } else {
-      window.scrollTo({
-        top: 850,
-      });
-    }
-    urlMovie = d.link_embed;
-    fileName = d.filename;
-    window.location.replace(`/xem-phim/${name}/${d.slug}`);
-  };
+  // const fhandleClick = (d) => {
+  //   if (window.screen.width <= 480) {
+  //     window.scrollTo({
+  //       top: 1000,
+  //     });
+  //   } else {
+  //     window.scrollTo({
+  //       top: 850,
+  //     });
+  //   }
+  //   urlMovie = d.link_embed;
+  //   fileName = d.filename;
+  //   window.location.replace(`/xem-phim/${name}/${d.slug}`);
+  // };
 
   return (
     <div className="video">
