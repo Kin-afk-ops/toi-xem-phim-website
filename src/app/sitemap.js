@@ -13,29 +13,6 @@ export default async function sitemap() {
       };
     }) ?? [];
 
-  const resCategories = await axiosInstance.get("/categories");
-
-  const categories = await resCategories.data;
-  const categoriesUrl =
-    categories?.map((category) => {
-      const cateValue = category.name.toLowerCase().split(" ").join("+");
-      return {
-        url: `${baseUrl}/danh-sach/the-loai.html?category=${cateValue}&page=1`,
-        lastModified: new Date(),
-      };
-    }) ?? [];
-
-  const resCountries = await axiosInstance.get("/country");
-  const countries = await resCountries.data;
-  const countriesUrl =
-    countries?.map((country) => {
-      const countryValue = country.name.toLowerCase().split(" ").join("+");
-      return {
-        url: `${baseUrl}/danh-sach/quoc-gia.html?country=${countryValue}&page=1`,
-        lastModified: new Date(),
-      };
-    }) ?? [];
-
   return [
     {
       url: "https://next-movie-mu.vercel.app/",
@@ -63,7 +40,5 @@ export default async function sitemap() {
       priority: 0.2,
     },
     ...moviesUrl,
-    ...categoriesUrl,
-    ...countriesUrl,
   ];
 }
