@@ -1,4 +1,42 @@
-export default function sitemap() {
+import axiosInstance from "../config";
+
+export default async function sitemap() {
+  const baseUrl = "https://next-movie-mu.vercel.app/";
+
+  const resMovies = await axiosInstance.get("/movie/all");
+  const movies = await resMovies.data;
+  const moviesUrl =
+    movies?.map((movie) => {
+      return {
+        url: `${baseUrl}/phim/${movie.slug}.html`,
+        lastModified: new Date(),
+      };
+    }) ?? [];
+
+  const resCategories = await axiosInstance.get("/categories");
+
+  const categories = await resCategories.data;
+  const categoriesUrl =
+    categories?.map((category) => {
+      const cateValue = category.toLowerCase().split(" ").join("+");
+      return {
+        url: `${baseUrl}/danh-sach/the-loai.html?category=${cateValue}&page=1`,
+        lastModified: new Date(),
+      };
+    }) ?? [];
+
+  const resCountries = await axiosInstance.get("/country");
+
+  const countries = await resCountries.data;
+  const countriesUrl =
+    countries?.map((country) => {
+      const countryValue = country.toLowerCase().split(" ").join("+");
+      return {
+        url: `${baseUrl}/danh-sach/quoc-gia.html?category=${countryValue}&page=1`,
+        lastModified: new Date(),
+      };
+    }) ?? [];
+
   return [
     {
       url: "https://next-movie-mu.vercel.app/",
@@ -25,5 +63,8 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.2,
     },
+    ...moviesUrl,
+    ...categoriesUrl,
+    ...countriesUrl,
   ];
 }
