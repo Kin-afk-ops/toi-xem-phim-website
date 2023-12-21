@@ -18,7 +18,7 @@ export default async function sitemap() {
   const categories = await resCategories.data;
   const categoriesUrl =
     categories?.map((category) => {
-      const cateValue = category.toLowerCase().split(" ").join("+");
+      const cateValue = category.name.toLowerCase().split(" ").join("+");
       return {
         url: `${baseUrl}/danh-sach/the-loai.html?category=${cateValue}&page=1`,
         lastModified: new Date(),
@@ -26,13 +26,12 @@ export default async function sitemap() {
     }) ?? [];
 
   const resCountries = await axiosInstance.get("/country");
-
   const countries = await resCountries.data;
   const countriesUrl =
     countries?.map((country) => {
-      const countryValue = country.toLowerCase().split(" ").join("+");
+      const countryValue = country.name.toLowerCase().split(" ").join("+");
       return {
-        url: `${baseUrl}/danh-sach/quoc-gia.html?category=${countryValue}&page=1`,
+        url: `${baseUrl}/danh-sach/quoc-gia.html?country=${countryValue}&page=1`,
         lastModified: new Date(),
       };
     }) ?? [];
