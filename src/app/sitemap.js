@@ -1,7 +1,7 @@
 import axiosInstance from "../config";
 
 export default async function sitemap() {
-  const baseUrl = "https://next-movie-mu.vercel.app/";
+  const baseUrl = "https://next-movie-mu.vercel.app";
 
   const resMovies = await axiosInstance.get("/movie/all");
   const movies = await resMovies.data;
