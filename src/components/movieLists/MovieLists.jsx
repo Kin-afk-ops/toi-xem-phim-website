@@ -20,10 +20,24 @@ import "swiper/css/scrollbar";
 const MovieLists = ({ movies }) => {
   let { data } = movies;
   const [screenWidth, setScreenWidth] = useState(5);
-  let windowWidth = 0;
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    windowWidth = window && window.screen.width;
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // chạy lần đầu
+    handleResize();
+
+    // add listener
+    window.addEventListener("resize", handleResize);
+
+    // cleanup khi unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (windowWidth < 740) {
       setScreenWidth(2);
     } else if (windowWidth >= 740 && windowWidth < 1024) {

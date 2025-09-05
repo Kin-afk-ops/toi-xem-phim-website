@@ -33,6 +33,7 @@ const InfoMovie = ({ movie }) => {
       <div className="infoMovieCard grid ">
         <div className="infoMovieTop row no-gutters">
           <div className="c-3 m-4 s-12 leftWrap">
+            {/* eslint-disable @next/next/no-img-element */}
             <img src={infoMovie?.thumb_url} alt="" onClick={handleClick} />
             <button className="infoMovieWatch" onClick={handleClick}>
               Xem phim ngay

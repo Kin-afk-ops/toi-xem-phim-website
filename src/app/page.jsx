@@ -21,18 +21,10 @@ export default async function Home() {
   };
 
   return (
-    <div>
-      {movies.data.length === 10 &&
-      seriesMovies.data.length === 10 &&
-      movieMovies.data.length === 10 ? (
-        <>
-          <HomeList movies={movies} />
-          <HomeList movies={seriesMovies} />
-          <HomeList movies={movieMovies} />
-        </>
-      ) : (
-        <Loading />
-      )}
-    </div>
+    <>
+      <HomeList movies={movies} />
+      <HomeList movies={seriesMovies} />
+      <HomeList movies={movieMovies} />
+    </>
   );
 }

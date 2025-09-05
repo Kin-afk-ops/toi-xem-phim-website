@@ -1,25 +1,30 @@
 "use client";
 
-import Loading from "../../../components/loading/Loading";
 import Video from "../../../components/video/Video";
 import "./videoPage.scss";
 import "./responsive.scss";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../../config";
+import LoadingScreen from "@/components/loading/Loading";
 
-const VideoPage = ({ params }) => {
+const VideoPage = () => {
   const [movie, setMovie] = useState([]);
   const [category, setCategory] = useState([]);
   const [country, setCountry] = useState([]);
 
   const searchParams = useSearchParams();
 
+  const params = useParams();
+
   const slug = params?.slug.split(".")[0];
 
   useEffect(() => {
     const getMovie = async () => {
-      const res = await axiosInstance.get("https://ophim1.com/phim/" + slug);
+      const res = await axiosInstance.get(
+        `${process.env.NEXT_PUBLIC_SOURCE_URL}/${slug}`
+      );
+
       setMovie(res.data);
       setCategory(res.data.movie.category);
       setCountry(res.data.movie.country);
@@ -52,7 +57,7 @@ const VideoPage = ({ params }) => {
   return (
     <div className="singleMovie">
       {!infoMovie ? (
-        <Loading />
+        <LoadingScreen />
       ) : (
         <div className="singleMovieVideo">
           <Video movie={movie} ep={ep} />

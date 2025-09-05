@@ -3,9 +3,7 @@
 import "./movieListItem.scss";
 // import "./responsive.scss";
 import Link from "next/link";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-// import tam from "../../assets/images/tam.jpg";
 import Image from "next/image";
 
 const MovieListItem = ({ movie, listMode }) => {
@@ -30,7 +28,7 @@ const MovieListItem = ({ movie, listMode }) => {
     >
       <div className="movieListItemPoster">
         <Image
-          src={`https://img.ophim9.cc/uploads/movies/${slug}-thumb.jpg`}
+          src={`${process.env.NEXT_PUBLIC_THUMB}/${movie.slug}-thumb.jpg`}
           alt="thumb"
           // effect="blur"
           // threshold="100"

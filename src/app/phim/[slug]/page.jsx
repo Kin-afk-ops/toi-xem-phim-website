@@ -3,12 +3,13 @@ import InfoMovie from "./InfoMovies";
 import axiosInstance from "../../../config";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  // read route params
-  const slug = params.slug.split(".")[0];
+  const { slug } = await params;
 
-  // fetch data
-  const res = await axiosInstance.get("https://ophim1.com/phim/" + slug);
+  const slugMovie = slug?.split(".")[0];
 
+  const res = await axiosInstance.get(
+    `${process.env.NEXT_PUBLIC_SOURCE_URL}/${slugMovie}`
+  );
   const movie = await res.data;
 
   const title = "Xem phim " + movie?.movie.name;
@@ -28,15 +29,14 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const InfoLayout = async ({ params }) => {
-  const slugMovie = params.slug.split(".")[0];
-  const res = await axiosInstance.get("https://ophim1.com/phim/" + slugMovie);
-  const movie = await res.data;
+  const { slug } = await params;
 
-  return (
-    <div>
-      <InfoMovie movie={movie} />
-    </div>
-  );
+  const slugMovie = slug?.split(".")[0];
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SOURCE_URL}/${slugMovie}`);
+
+  const movie = await res.json();
+
+  return <InfoMovie movie={movie} />;
 };
 
 export default InfoLayout;

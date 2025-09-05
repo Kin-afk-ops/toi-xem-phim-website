@@ -91,8 +91,8 @@ export default async function RootLayout({ children }) {
         <Header />
         <div className="home grid wide">
           <div className="row no-gutters">
-            <div className="l-9 m-12 s-12"> {children}</div>
-            <GoodMovie movies={resHot.data} />
+            <div className="l-12 m-12 s-12"> {children}</div>
+            {/* <GoodMovie movies={resHot.data} /> */}
           </div>
         </div>
         <a href="header" className="pageUp">
@@ -102,6 +102,7 @@ export default async function RootLayout({ children }) {
       </body>
 
       <Script
+        id="my-inline-script"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(object) }}
         strategy="lazyOnload"

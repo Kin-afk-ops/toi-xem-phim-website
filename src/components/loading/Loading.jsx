@@ -1,6 +1,6 @@
 import "./loading.scss";
 
-const Loading = () => {
+const LoadingScreen = () => {
   return (
     <section>
       <div className="loader">
@@ -29,4 +29,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingScreen;

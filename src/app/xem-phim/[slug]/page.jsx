@@ -1,16 +1,21 @@
 import { convert } from "html-to-text";
 import VideoPage from "./VideoPage";
-import axiosInstance from "../../../config";
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  // read route params
-  const slug = params.slug.split(".")[0];
-  const ep = searchParams.tap;
+  const { slug } = await params;
+  const slugMovie = slug?.split(".")[0];
+
+  const { tap: ep } = await searchParams;
+  let movie;
 
   // fetch data
-  const res = await axiosInstance.get("https://ophim1.com/phim/" + slug);
+  if (slugMovie) {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SOURCE_URL}/${slugMovie}`
+    );
 
-  const movie = await res.data;
+    movie = await res.json();
+  }
 
   let title = "";
   if (ep) {
@@ -27,8 +32,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
-const VideoLayout = ({ params }) => {
-  return <VideoPage params={params} />;
+const VideoLayout = () => {
+  return <VideoPage />;
 };
 
 export default VideoLayout;

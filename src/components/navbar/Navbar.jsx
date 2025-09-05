@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import "./navbar.scss";
 import "./responsive.scss";
@@ -14,6 +14,7 @@ const Navbar = () => {
   const [countries, setCountries] = useState([]);
   const [display, setDisplay] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetData = async () => {
@@ -25,6 +26,11 @@ const Navbar = () => {
 
     fetData();
   }, []);
+
+  useEffect(() => {
+    // mỗi khi pathname thay đổi thì đóng menu
+    setDisplay(false);
+  }, [pathname]);
 
   const handleHidden = () => {
     setDisplay(!display);

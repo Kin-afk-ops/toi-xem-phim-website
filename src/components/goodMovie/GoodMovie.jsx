@@ -10,10 +10,14 @@ const GoodMovie = ({ movies }) => {
         <h2 className="mainTitle">PHIM HOT</h2>
         <ul>
           {movies?.map((movie, index) => (
-            <Link className="link" href={`/phim/${movie.slug}.html`}>
-              <li key={index}>
+            <Link
+              key={index}
+              className="link"
+              href={`/phim/${movie.slug}.html`}
+            >
+              <li>
                 <Image
-                  src={`https://img.ophim9.cc/uploads/movies/${movie.slug}-thumb.jpg`}
+                  src={`${process.env.NEXT_PUBLIC_THUMB}/${movie.slug}-thumb.jpg`}
                   alt="thumb"
                   width={80}
                   height={90}
